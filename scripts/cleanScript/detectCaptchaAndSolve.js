@@ -7,7 +7,7 @@ async function detectCaptchaAndSolve(page) {
 
   if (!captchaDetected) return false;
 
-  const solve = await ac.setAPIKey("1a8a8692be966618b42134bf73df9e51");
+  const solve = await ac.setAPIKey(`${process.env.CAPTCHA_KEY}`);
 
   // Check if it's reCAPTCHA
   const recaptchaElement = await page.$(".g-recaptcha");
@@ -20,7 +20,7 @@ async function detectCaptchaAndSolve(page) {
     console.log("Solving reCAPTCHA...");
     const token = await ac.solveRecaptchaV2Proxyless(
       pageUrl,
-      "6LdLLIMbAAAAAIl-KLj9p1ePhM-4LCCDbjtJLqRO"
+      `${process.env.GOOGLE_KEY}`
     );
     console.log("token", token);
 
